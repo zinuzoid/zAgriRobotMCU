@@ -5,6 +5,10 @@
 #include "init.h"
 #include "drill.h"
 #include "pwm.h"
+#include "spray.h"
+
+#define _SPRAY
+//#define _DRILL
 
 ZQUEUE qSerial;
 
@@ -24,6 +28,7 @@ int main()
 	QueueInit(&qSerial);
 	EnableSerialISR();
 	MotorDirInit();
+	MotorCannonInit();
 	PWMInit();
 	
 	delay(1000);
@@ -56,24 +61,33 @@ int main()
 			{
 				SetMotorPWM(0,255);
 			}
-			else if(stmp==0x3F)//0b00111111drill
+			else if(stmp==0x3F)//0b11000000 SPRAY
 			{
-				SetMotorPWM(0,0);
-				
-				/* spray here!!!!
-				while(QueueIsEmpty(&qSerial));
-				
-				*/
-				
-				DisableSerialISR();
-				
-				Rotate_Saws(12);
-				PunchDOWN();
-				delay(5000);
-				PunchUP();
-				
-				QueueInit(&qSerial);
-				EnableSerialISR();
+					#ifdef _SPRAY
+						unsigned char stmp,
+							ValueP=0,ValueK=0,ValueN=0;
+						
+						while(QueueIsEmpty(&qSerial));
+						DisableSerialISR();
+						QueueDelete(&qSerial,&stmp);
+						
+						ValueN =(stmp&0xf0)>>4;
+						ValueP =stmp&0x0f;
+						ValueK =10-ValueN-ValueP;
+						EnableSpray(ValueN,ValueP,ValueK);
+					#endif
+					
+					#ifdef _DRILL
+						DisableSerialISR();
+						
+						Rotate_Saws(7);
+						PunchDOWN();
+						delay(5000);
+						PunchUP();
+						
+						QueueInit(&qSerial);
+						EnableSerialISR();
+					#endif
 			}
 			else//stop
 			{

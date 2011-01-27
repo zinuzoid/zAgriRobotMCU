@@ -17,7 +17,7 @@ DUTYBR CEX3 P1.6
 #define DUTYFR	CCAP2H
 #define DUTYBR	CCAP3H
 
-//define Option drill
+//define drill	
 #define DrillContactUP		P1_0
 #define DrillContactDOWN	P1_1
 #define SawEncoder			P2_7   
@@ -27,6 +27,15 @@ DUTYBR CEX3 P1.6
 
 #define SawDir				P2_5
 #define SawPWM	     	 	P0_5
+//end define drill
+
+//define SPRAY
+#define CannonWater_N			P0_0
+#define CannonWater_P			P0_1
+#define CannonWater_K			P0_2
+#define CannonWater_TT			P0_3
+//end define SPRAY
+
 
 void PortInit();
 void SerialInit();
@@ -34,4 +43,7 @@ void EnableSerialISR();
 void DisableSerialISR();
 void PWMInit();
 void MotorDirInit();
+
+void MotorCannonInit();
+
 
