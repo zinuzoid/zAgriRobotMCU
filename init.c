@@ -4,7 +4,7 @@
 
 void PortInit()
 {
-	P0=0x00;
+	//P0=0x00;
 	P1=0x78;
 	P2=0x00;
 	
@@ -65,7 +65,7 @@ void MotorCannonInit()
 	CannonWater_N=0;
 	CannonWater_P=0;
 	CannonWater_K=0;
-	CannonWater_TT=1;
+	CannonWater_TT=0;
 }
 
 

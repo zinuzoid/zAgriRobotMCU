@@ -32,7 +32,8 @@ int main()
 	PWMInit();
 	
 	delay(1000);
-
+	
+	
 	while(1)
 	{
 		if(!QueueIsEmpty(&qSerial))
@@ -63,18 +64,22 @@ int main()
 			}
 			else if(stmp==0x3F)//0b11000000 SPRAY
 			{
+					
 					#ifdef _SPRAY
-						unsigned char stmp,
-							ValueP=0,ValueK=0,ValueN=0;
+						unsigned char stmp,ValueP=0,ValueK=0,ValueN=0;
+						SetMotorPWM(0,0);
 						
 						while(QueueIsEmpty(&qSerial));
 						DisableSerialISR();
 						QueueDelete(&qSerial,&stmp);
 						
-						ValueN =(stmp&0xf0)>>4;
-						ValueP =stmp&0x0f;
-						ValueK =10-ValueN-ValueP;
-						EnableSpray(ValueN,ValueP,ValueK);
+						ValueN=(stmp&0xf0)>>4;
+						ValueP=stmp&0x0f;
+						ValueK=10-ValueN-ValueP;
+						EnableSpray(3,3,4);
+						
+					
+						
 					#endif
 					
 					#ifdef _DRILL
