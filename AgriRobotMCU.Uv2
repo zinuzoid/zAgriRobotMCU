@@ -65,7 +65,7 @@ Options 1,0,0  // Target 'Target 1'
  XT51FL=0
  CBANKS5=0
  XBANKS5=0
- RCB51 { 0,0,0,0,0,0,0,1,0 }
+ RCB51 { 0,0,0,0,0,255,255,0,0 }
  RXB51 { 0,0,0,0,0,0,0,0,0 }
  OCM51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
  OCR51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
@@ -127,7 +127,7 @@ Options 1,0,0  // Target 'Target 1'
  FLASH4 ()
 EndOpt
 
-Options 1,1,3  // File 'drill.c'
+Options 1,1,8  // File 'spray.c'
  PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
  IncBld=0
  AlwaysBuild=2

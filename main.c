@@ -7,8 +7,8 @@
 #include "pwm.h"
 #include "spray.h"
 
-#define _SPRAY
-//#define _DRILL
+//#define _SPRAY
+#define _DRILL
 
 ZQUEUE qSerial;
 
@@ -52,15 +52,24 @@ int main()
 			
 			if(stmp==191)//streight
 			{
+				DriMotor(1,1);
 				SetMotorPWM(255,255);
+				
 			}
 			else if(stmp==184)
-			{
-				SetMotorPWM(255,0);
+			{	
+				DriMotor(1,0);
+				SetMotorPWM(200,0);
+				//delay(100);
+				//SetMotorPWM(220,220);// (L,R)
+				
 			}
 			else if(stmp==135)
 			{
-				SetMotorPWM(0,255);
+				DriMotor(0,1);
+				SetMotorPWM(0,200);
+				//delay(100);
+				//SetMotorPWM(220,220); //(L,R)
 			}
 			else if(stmp==0x3F)//0b11000000 SPRAY
 			{

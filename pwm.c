@@ -8,3 +8,13 @@ void SetMotorPWM(unsigned char L,unsigned char R)
 	DUTYFR=0xFF-R;
 	DUTYBR=0xFF-R;
 }
+
+
+void DriMotor(unsigned char L,unsigned char R)
+{
+	MotorFRDir=R;
+	MotorFLDir=L;
+	MotorBLDir=L;
+	MotorBRDir=R;
+}
+

@@ -18,7 +18,7 @@ void SerialInit()
 	SCON=0x50;
 	SMOD=0x00;
 	TMOD=0x20;
-	TH1=0xfb;
+	TH1=0xfd;
 	TR1=1;
 	RI=0;
 	TI=0;
@@ -52,10 +52,10 @@ void PWMInit()
 
 void MotorDirInit()
 {
-	MotorFRDir=0;
-	MotorFLDir=0;
-	MotorBLDir=0;
-	MotorBRDir=0;
+	MotorFRDir=1;
+	MotorFLDir=1;
+	MotorBLDir=1;
+	MotorBRDir=1;
 }
 
 //============SPRAY==================
